@@ -20,15 +20,6 @@ An Android Flutter app for adding, editing, deleting, and favoriting items. The 
 
 The Android emulator reaches the laptop's Firestore server through `10.0.2.2:8080`. To keep your items when stopping the Firestore server, append `--export-on-exit=./firebase-export` to the Firebase command. Once that directory exists, append `--import=./firebase-export` on subsequent starts.
 
-## Screenshot sequence
-
-1. **Main page**. If the list is empty, add **45W Charger** with quantity **67**, then **Gaming Mouse** with quantity **150**. The newest item appears first.
-2. **Add Item dialog**. Tap **+** to open the dialog. To match the background list in the reference, take this screenshot after adding the items in step 3.
-3. **Items added**. Add **IEMs** and **Keyboard**, both with quantity **50**.
-4. **Edit Item dialog**. Tap the orange pencil beside **Keyboard**.
-5. **Items after editing**. Change **Keyboard** to **Gaming Keyboard** and tap **Edit**.
-6. **Favorites filter**. Tap the hearts beside **Gaming Mouse** and **45W Charger**. Tap the white heart in the header to show just those two items. Tap it again to return to the full list.
-
 ## Connect your own Firebase project
 
 The default configuration uses a local Firebase demo project. For a cloud submission, use [FlutterFire setup](https://firebase.google.com/docs/flutter/setup) to register the Android app with your own Firebase project and generate `lib/firebase_options.dart`. In `lib/main.dart`, initialize Firebase with `DefaultFirebaseOptions.currentPlatform` and remove the `useFirestoreEmulator` call. Set the appropriate Firestore access rules for your project. The included `firestore.emulator.rules` is for the local demo.
