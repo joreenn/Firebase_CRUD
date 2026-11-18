@@ -3,21 +3,23 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'crud_service.dart';
+import 'firebase_options.dart';
 import 'home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    name: defaultFirebaseAppName,
-    demoProjectId: 'demo-firebase-note',
-  );
+  final options = DefaultFirebaseOptions.currentPlatform;
+  await Firebase.initializeApp(options: options);
+
   final firestore = FirebaseFirestore.instance;
-  firestore.useFirestoreEmulator(
-    const String.fromEnvironment('FIRESTORE_HOST', defaultValue: '10.0.2.2'),
-    8080,
-    automaticHostMapping: false,
-  );
+  if (options.projectId.startsWith('demo-')) {
+    firestore.useFirestoreEmulator(
+      const String.fromEnvironment('FIRESTORE_HOST', defaultValue: '10.0.2.2'),
+      8080,
+      automaticHostMapping: false,
+    );
+  }
 
   runApp(MyApp(crudService: CrudService(firestore)));
 }
